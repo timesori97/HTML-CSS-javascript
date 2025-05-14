@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 문서의 문자 인코딩을 UTF-8로 설정 -->
+    <meta charset="UTF-8">
+    <!-- 다양한 디바이스에서 반응형 디자인을 보장 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 웹페이지의 제목 설정 -->
+    <title>Document</title>
+</head>
+<!-- CSS 스타일 정의 -->
+<style>
+    /* 테이블 스타일: 너비 400px, 테두리 추가 */
+    table {
+        width: 400px;
+        border: 1px solid;
+    }
+    /* 테이블 행과 헤더 스타일: 테두리 추가, 텍스트 중앙 정렬 */
+    tr, th {
+        border: 1px solid;
+        text-align: center;
+    }
+    /* 텍스트 영역 스타일: 너비 400px */
+    #abcd {
+        width: 400px;
+    }
+</style>
+<body>
+    <!-- 페이지 제목 -->
+    <h2>휴먼 검색어 포털 시스템</h2>
+    <!-- 문제 1 안내 문구 -->
+    <span>문제 1 <br>검색어를 입력하세요 [지사사항 있음]</span>
+    <!-- 검색어 입력 필드 -->
+    <input type="text" id="serach">
+    <!-- 검색 버튼: 클릭 시 insert() 함수 호출 -->
+    <input type="button" value="검색" onclick="insert()"><br>
+    <!-- 검색어 리스트 제목 -->
+    <span>검색어 리스트</span><br>
+    <!-- 검색어 리스트를 표시할 테이블 -->
+    <table id="ta1">
+        <tr>
+            <!-- 첫 번째 열: 체크박스용 번호 -->
+            <td width=100px>1</td>
+            <!-- 두 번째 열: 검색어 -->
+            <td>검색어</td>
+        </tr>
+    </table>
+
+    <!-- 전체 선택 및 삭제 버튼을 포함한 테이블 -->
+    <table>
+        <tr>
+            <td align="left">
+                <!-- 전체 선택 체크박스: 클릭 시 allselect() 함수 호출 -->
+                <input type="checkbox" onclick="allselect(this)"> 모두 선택
+                <!-- 전체 삭제 버튼: 클릭 시 alldelete() 함수 호출 -->
+                <td><input type="button" value="전체삭제" onclick="alldelete()"></td>
+                <!-- 선택 삭제 버튼: 클릭 시 deletecbox() 함수 호출 -->
+                <td><input type="button" value="삭제" onclick="deletecbox()"></td>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <hr>
+    <!-- 문제 2 안내 문구 -->
+    <span> 문제 2</span><br>
+    <span> 검색어를 입력하고 검색 버튼을 누르면 검색어를 찾아서 배경을 노란색으로 변경하시오. </span><br><br>
+    <!-- 텍스트와 검색 기능을 포함한 div -->
+    <div id="abcd">
+        <!-- 검색 대상 텍스트 -->
+        <span id="abc">
+            한화 타선은 장단 17안타를 몰아쳐 키움 마운드를 뒤흔들었다. 채은성(5타수 3안타 1타점)과 에스테반 플로리얼(5타수 3안타 1득점), 김태연(5타수 4안타 2득점)이 안타 3개씩을 쳤고, 이도윤은 3타수 1안타 3타점으로 거들었다.
+
+            경기 초반 부터 흔들린 키움 선발 조영건은 불안한 투구 내용을 남기는 등 1⅓이닝 2피안타 3사사구 2실점을 기록, 시즌 첫 패전을 당했다.
+        </span>
+        <br>
+        <!-- 문제 2 검색어 입력 필드 -->
+        찾을 문자열 <input type="text" id="sword"> 
+        <!-- 검색 버튼: 기능 미구현 -->
+        <input type="button" value="검색">
+    </div>
+</body>
+</html>
+<!-- JavaScript 코드 -->
+<script>
+    // 플래그 변수: 체크박스 상태 추적 (현재 사용 방식 비효율적)
+    let f = false;
+    // 검색어 행의 ID를 저장할 배열
+    let arri = new Array();
+    // 검색어 행의 카운터
+    let count = 0;
+    // 배열 인덱스
+    let i = 0;
+
+    // 검색어 입력을 테이블에 추가하는 함수
+    function insert(){
+        // 카운터 증가
+        count++;
+        // 테이블 요소 가져오기
+        let a = document.getElementById('ta1');
+        // 검색어 입력값 가져오기
+        let b = document.getElementById('serach').value;
+        // 테이블에 새로운 행 추가: 체크박스와 검색어 포함
+        // 주의: 체크박스 태그의 따옴표가 잘못됨 (\" 대신 " 사용 가능)
+        a.innerHTML += '<tr id="cbox' + count + '" class="box">' + 
+            '<td><input type="checkbox" name="cbox"></td>' + 
+            '<td>' + b + '</td>' + 
+            '</tr>';
+        // 현재 행의 ID를 배열에 저장
+        arri[i] = count;
+        // 배열 인덱스 증가
+        i++;
+        // 개선 제안: 입력값이 비어 있는 경우 처리 추가 필요
+    }
+
+    // 전체 선택 체크박스 상태에 따라 모든 체크박스를 토글하는 함수
+    function allselect(selectAll){
+        // 이름이 'cbox'인 모든 체크박스 가져오기
+        const checkboxes = document.getElementsByName('cbox');
+        
+        // 각 체크박스의 상태를 전체 선택 체크박스와 동일하게 설정
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked;
+            // 플래그 설정 로직: 체크박스 상태에 따라 f 값 설정
+            // 주의: 논리 오류로 인해 f 값이 비효율적으로 설정됨
+            if ((selectAll.checked == true && checkbox.checked == false) || checkbox.checked == false) {
+                f = false;
+            } else if ((selectAll.checked == false && checkbox.checked == true) || checkbox.checked == true) {
+                f = true;
+            }
+        });
+        // 개선 제안: f 플래그 대신 체크박스 상태를 직접 확인
+    }
+
+    // 선택된 체크박스의 행을 삭제하는 함수 (오류 존재)
+    function deletecbox(){
+        // 클래스 이름이 'box'인 요소 가져오기
+        let name = document.getElementsByClassName('box');
+        // 오류: getElementById는 컬렉션에 직접 사용 불가, charAt도 부적절
+        let name2 = name.getElementById.charAt(4);
+        // 오류: for 루프 조건이 잘못됨 (arri.length은 항상 참)
+        for (let j = 0; arri.length; j++) {
+            if (name2.includes(arri[j])) {
+                name2.innerHTML = '';
+            }
+        }
+        // 제안: 선택된 체크박스의 부모 행을 제거하는 로직으로 수정
+    }
+
+    // 모든 행을 삭제하는 함수
+    function alldelete(){
+        // 테이블 요소 가져오기
+        let a = document.getElementById('ta1');
+        // f 플래그가 true일 때 테이블 초기화
+        if (f == true) {
+            a.innerHTML = "<tr> <td width=100px>1</td> <td>검색어</td> </tr>";
+        }
+        // 개선 제안: f 플래그 대신 체크박스 상태 확인 또는 항상 삭제 가능
+    }
+</script>
+<!-- 지시사항
+
+** 화면 설계 미니프로젝트 결과물을 모두 올려 주세요.. 4월9일 작업
+
+ 1. 검색버튼을 누르면 표의 검색어 열에 추가 되도록한다. 단, 모두 선택 메뉴는 항상 맨 아래에 위치 시킨다.
+ 2. 모두 선택을 클릭하면 검색어가 모두 선택되게 한다.
+ 3. 체크한 검색어가 모두 삭제 되도록 한다.
+ 4. 검색어를 입력하면 onchange를 사용하여 중복되면 이미 검색한 검색어입니다. 라고 경고창을
+    띄우고 검색어 입력 부분을 빈칸으로 만든다. 
+ ** 모든 tag의 이벤트 등록은 리스너와 람다식을 사용하시오. 
+
+ ** -->

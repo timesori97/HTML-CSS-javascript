@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 문서의 문자 인코딩을 UTF-8로 설정 -->
+    <meta charset="UTF-8">
+    <!-- 다양한 디바이스에서 반응형 디자인을 보장 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 웹페이지의 제목 설정 -->
+    <title>Document</title>
+</head>
+<!-- CSS 스타일 정의 -->
+<style>
+    /* 주문 정보 영역의 텍스트 색상을 파란색으로 설정 */
+    #order_info{
+        color: blue;
+    }
+</style>
+<body>
+    <!-- 페이지 제목 -->
+    <h1>주문메뉴</h1>
+    <!-- 메뉴 정보를 표시할 테이블을 포함하는 div -->
+    <div id="info">
+        <!-- 메뉴 목록을 표시할 테이블 -->
+        <table id="infotable">
+        </table>
+    </div>
+    <!-- 메뉴 입력 필드 -->
+    메뉴선택 <input type="text" id="inputMenu">
+    <!-- 수량 입력 필드 -->
+    수량<input type="number" id="inputnum">
+    <!-- 주문 버튼: 클릭 시 order() 함수 호출 -->
+    <input type="button" id="btn" onclick="order()" value="주문">
+    <br>
+    <!-- 주문 정보를 표시할 영역 -->
+    주문정보 <div id="order_info"></div>
+    <hr>
+    <!-- 주문 목록을 표시할 테이블 -->
+    <table id="orderList">
+        <tr>
+            <!-- 첫 번째 열은 비어 있음 (체크박스용으로 추정) -->
+            <th></th>
+            <!-- 메뉴 열 -->
+            <th>메뉴</th>
+            <!-- 수량 열 -->
+            <th>수량</th>
+        </tr>
+    </table>
+    <p></p>
+    <!-- 전체 주문 삭제 버튼 (기능 미구현) -->
+    <button id="deleteBtn">삭제</button>
+</body>
+<!-- JavaScript 코드 -->
+<script>
+    // 메뉴 목록 배열
+    let menu = ['자장면','볶음밥','탕수육'];
+    // 테이블 HTML을 저장할 변수
+    let result;
+    // 주문 데이터를 저장할 배열
+    let arr = new Array();
+    // 플래그 변수 (사용되지 않음)
+    let f = false;
+    // 메뉴 존재 여부를 저장할 변수
+    let a;
+    // 입력된 메뉴
+    let input;
+    // 입력된 수량
+    let inputnum;
+    // 메뉴와 수량을 결합한 문자열
+    let inputtotall;
+
+    // 메뉴를 테이블 형식으로 표시 (오류: 현재 로직은 잘못된 출력 생성)
+    for(let i = 0; i < menu.length/3; i++){
+        // 메뉴 배열을 <td> 태그로 결합하여 한 행으로 표시
+        // 주의: menu.join("<td></td>")은 잘못된 HTML을 생성하며, 루프는 1번만 실행됨
+        result = '<tr>' + menu.join("<td></td>") + '</tr>';
+    }
+
+    // infotable에 결과 HTML 삽입
+    // 주의: 현재 result는 잘못된 형식으로 인해 비정상적인 테이블 출력
+    document.getElementById('infotable').innerHTML = result;
+
+    // 주문 처리 함수
+    function order(){
+        // 입력된 메뉴 가져오기
+        input = document.getElementById('inputMenu').value;
+        // 입력된 수량 가져오기
+        inputnum = document.getElementById('inputnum').value;
+        // 메뉴와 수량 결합 (의미不明: 단순 문자열 결합)
+        inputtotall = input + inputnum;
+        // 입력된 메뉴가 메뉴 목록에 있는지 확인
+        if(menu.includes(input)){
+            // 메뉴가 존재하면 확인 창 표시
+            confirm('메뉴가 있습니다');
+            // 메뉴 존재 여부 저장 (불필요한 중복 확인)
+            a = menu.includes(input);
+            if(a){
+                // order_info에 메뉴, 수량, 체크박스, 삭제 버튼 추가
+                // 주의: 체크박스 태그가 잘못된 따옴표로 인해 비정상 렌더링 가능성
+                document.getElementById('order_info').innerHTML = inputtotall +
+                    '<input type=\"checkbox"\>' + 
+                    '<button id=\"deletebtn"\ onclick = \"delete1()"\>삭제</button>';
+            }
+        }
+    }
+
+    // 개별 주문 삭제 함수
+    function delete1(){
+        // order_info 영역을 '삭제됨'으로 변경
+        document.getElementById('order_info').innerHTML = '삭제됨';
+    }
+</script>
+</html>

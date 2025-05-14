@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 문서의 문자 인코딩을 UTF-8로 설정 -->
+    <meta charset="UTF-8">
+    <!-- 다양한 디바이스에서 반응형 디자인을 보장 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 웹페이지의 제목 설정 -->
+    <title>Document</title>
+</head>
+<!-- 폼 상호작용을 처리하는 JavaScript 코드 -->
+<script>
+    // 시작 날짜와 종료 날짜 입력의 형식 유효성을 검사하는 함수
+    function selectbutn(){
+        // 시작 날짜 입력값 가져오기
+        let start = document.getElementById('startdate').value;
+        // 종료 날짜 입력값 가져오기
+        let end = document.getElementById('enddate').value;
+
+        // 시작 날짜가 yyyy-mm-dd 형식을 따르는지 확인 (4번째와 7번째 위치에 대시 확인)
+        if(start.charAt(4) === '-' && start.charAt(7) === '-'){
+            // 형식이 맞으면 추가 동작 없음 (추후 로직 추가 가능)
+        }else{
+            // 시작 날짜 형식이 잘못된 경우 사용자에게 경고
+            alert('형식이 잘못 됬습니다 yyyy-mm-dd 형식으로 쓰시오');
+        }
+        // 종료 날짜가 yyyy-mm-dd 형식을 따르는지 확인
+        if(end.charAt(4) === '-' && end.charAt(7) === '-'){
+            // 형식이 맞으면 추가 동작 없음 (추후 로직 추가 가능)
+        }else{
+            // 종료 날짜 형식이 잘못된 경우 사용자에게 경고
+            alert('형식이 잘못 됬습니다 yyyy-mm-dd 형식으로 쓰시오');
+        }
+    }
+
+    // 첫 번째 드롭다운(s1) 선택에 따라 두 번째 드롭다운(s2)을 채우는 함수
+    function populate(s1, s2){
+        // 두 드롭다운 요소에 대한 참조 가져오기
+        var s1 = document.getElementById(s1);
+        var s2 = document.getElementById(s2);
+        // 두 번째 드롭다운의 기존 옵션 제거
+        s2.innerHTML = "";
+        // 첫 번째 드롭다운의 선택값에 따라 옵션 정의
+        if(s1.value == "경기도"){
+            // 경기도 선택 시 옵션 (예: 수원, 안양)
+            var optionArray = ["수원|수원","안양|안양"];
+        } else if(s1.value == "서울"){
+            // 서울 선택 시 옵션 (예: 여의도, 을지로)
+            var optionArray = ["여의도|여의도","을지로|을지로"];
+        }
+        // 옵션 배열을 순회하며 두 번째 드롭다운에 새 옵션 추가
+        for(var option in optionArray){
+            // 각 옵션 문자열을 값과 표시 텍스트로 분리
+            var pair = optionArray[option].split("|");
+            // 새로운 옵션 요소 생성
+            var newOption = document.createElement("option");
+            // 옵션의 값 설정
+            newOption.value = pair[0];
+            // 옵션의 표시 텍스트 설정
+            newOption.innerHTML = pair[1];
+            // 두 번째 드롭다운에 새 옵션 추가
+            s2.options.add(newOption);
+        }
+    }
+
+    // '전체 선택' 체크박스에 따라 이름이 'hotel'인 모든 체크박스를 토글하는 함수
+    function selectAll(selectAll)  {
+        // 이름이 'hotel'인 모든 체크박스 가져오기
+        const checkboxes = document.getElementsByName('hotel');
+        
+        // 각 체크박스의 상태를 '전체 선택' 체크박스와 동일하게 설정
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = selectAll.checked;
+        })
+    }
+</script>
+<body>
+    <!-- 전체 콘텐츠를 감싸는 div -->
+    <div id="all">
+    <!-- 지역 선택 메뉴 영역 -->
+    <div id="menu">
+        <!-- 도 선택 드롭다운 -->
+        <label for="ch1">도선택
+        <select name="ch1" id="ch1" onchange="populate(this.id,'ch2')">
+            <option value="경기도">경기도</option>
+            <option value="서울">서울</option>
+        </select>
+        </label>
+        <!-- 시 선택 드롭다운 -->
+        <label for="ch2">시선택
+        <select name="ch2" id="ch2"></select>
+        </label>
+        <p></p>
+        <!-- 검색어 입력 필드 -->
+        <label for="search" class="search_box">검색어
+        <input type="text" name="search" id="search">
+        </label>
+    </div>
+    <!-- 필터 및 조회 옵션 영역 -->
+    <div id="select">
+        <!-- 전체 검색 체크박스 -->
+        <label for="checkboxall" id="checkboxall_box">전체검색
+        <input type="checkbox" id="checkboxall">
+        </label>
+
+        <!-- 숙소 유형 선택 라디오 버튼 그룹 -->
+        <div id="radio_box">
+            <label for="radio_select">호텔
+                <input type="radio" class="radio_select">
+            </label>
+            <label for="radio_select">펜션
+                <input type="radio" class="radio_select">
+            </label>
+            <label for="radio_select">캠핑장
+                <input type="radio" class="radio_select">
+            </label>
+        </div>
+       
+        <p></p>
+        <!-- 등록 날짜 시작 입력 필드 -->
+        <label for="">등록날짜시작
+            <input type="text" id="startdate">
+        </label>
+        <!-- 등록 날짜 종료 입력 필드 -->
+        <label for="">등록날짜종료
+            <input type="text" id="enddate">
+        </label>
+
+        <!-- 조회 버튼: 날짜 형식 검사 후 조회 동작 수행 -->
+        <button id="selectbutton" onclick="selectbutn()">조회</button>
+    </div>
+
+    <!-- 숙소 목록 테이블 영역 -->
+    <div id="center">
+        <fieldset>
+            <!-- 숙소 정보를 표시하는 테이블 -->
+            <table id="center_chart">
+                <tr>
+                    <!-- 전체 선택 체크박스 -->
+                    <td id="first"><input type="checkbox" name='hotel' value='hotelall' onclick='selectAll(this)'>
+                    전체선택</td>
+                </tr>
+                <!-- 테이블 헤더 -->
+                <tr>
+                    <th>선택</th>
+                    <th>구분</th>
+                    <th>상호명</th>
+                    <th>주소</th>
+                    <th>전화번호</th>
+                    <th>담당자</th>
+                </tr>
+                <!-- 테이블 데이터 행 (예시 데이터) -->
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel1'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+                <!-- 동일한 구조의 데이터 행 반복 (총 8개) -->
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel2'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel3'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel4'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel5'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel6'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel7'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" name='hotel' value='hotel8'></td>
+                    <td>호텔</td>
+                    <td>휴먼호텔</td>
+                    <td>경기도 수원시 휴먼동</td>
+                    <td>010-1111-2222</td>
+                    <td>홍길동</td>
+                </tr>
+            </table>
+        </fieldset>
+    </div>
+
+    <!-- 삭제 및 엑셀 변환 버튼 영역 -->
+    <div id="footer">
+        <!-- 선택된 항목 삭제 버튼 (기능 미구현) -->
+        <button id="deletebutton">삭제</button>
+        <!-- 테이블 데이터를 엑셀로 변환하는 버튼 (기능 미구현) -->
+        <button id="changebutton">엑셀변환</button>
+    </div>
+</div>
+</body>
+<!-- CSS 스타일 정의 -->
+<style>
+    /* 전체 body 스타일 */
+    body {
+        width:100%;
+        height:100%;
+    }
+    
+    /* 전체 콘텐츠를 감싸는 div 스타일 */
+    #all{
+        width:1150px;
+        height:300px;
+        margin: 100px;
+    }
+    /* 지역 선택 메뉴 스타일 */
+    #menu{
+        display: inline-block;
+    }
+    /* 필터 및 조회 옵션 스타일 */
+    #select{
+        display: inline-block;
+        padding-left: 90px;
+    }
+    /* 전체 검색 체크박스 스타일 */
+    #checkboxall_box{
+        display: inline-block;
+        padding-left: 30px;
+    }
+    /* 라디오 버튼 그룹 스타일 */
+    #radio_box{
+        display: inline-block;
+        padding-left: 50px;
+    }
+    /* 테이블 영역 스타일 */
+    #center{
+        padding-top: 10px;
+    }
+    /* 테이블 스타일 */
+    #center_chart{
+        border-collapse:collapse;
+    }
+
+    /* 테이블 크기 설정 */
+    table{
+        width: 1000px;
+    }
+    /* 테이블 행 스타일 */
+    tr{
+        border-bottom: solid 1px;
+    }
+    /* 첫 번째 행 (전체 선택) 스타일 */
+    #first{
+        border-bottom: none;
+    }
+    /* 테이블 헤더 스타일 */
+    th{
+        text-align: center;
+    }
+    /* 테이블 셀 스타일 */
+    td{
+        padding: 10px;
+        text-align: center;
+    }
+    /* 푸터 (버튼) 스타일 */
+    #footer{
+        padding-top: 10px;
+        padding-left: 825px;
+    }
+    /* 삭제 버튼 스타일 */
+    #deletebutton{
+        width: 100px;
+        height: 30px;
+    }
+    /* 엑셀 변환 버튼 스타일 */
+    #changebutton{
+        width: 100px;
+        height: 30px;
+    }
+    /* 도 선택 드롭다운 스타일 */
+    #ch1{
+        width: 140px;
+        text-align: center;
+    }
+    /* 시 선택 드롭다운 스타일 */
+    #ch2{
+        width: 130px;
+        text-align: center;
+    }
+    /* 검색어 입력 필드 스타일 */
+    #search{
+        width: 400px;
+    }
+    /* 테이블을 감싸는 필드셋 스타일 */
+    fieldset{
+        width: 1000px;
+    }
+    /* 시작 날짜 입력 필드 스타일 */
+    #startdate{
+        width: 100px;
+    }
+    /* 종료 날짜 입력 필드 스타일 */
+    #enddate{
+        width: 100px;
+    }
+</style>
+</html>

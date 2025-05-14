@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 문서의 문자 인코딩을 UTF-8로 설정 -->
+    <meta charset="UTF-8">
+    <!-- 다양한 디바이스에서 반응형 디자인을 보장 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 웹페이지의 제목 설정 -->
+    <title>Document</title>
+</head>
+<body>
+    <!-- 검색어 입력 필드 -->
+    <input type="text" id="serach">
+    <!-- 검색 버튼: 클릭 시 insert() 함수 호출 -->
+    <button id="btn1" value="검색" onclick="insert()">검색</button>
+    
+    <!-- 검색 결과를 표시할 테이블 -->
+    <table id="ta1">
+        <tr>
+            <!-- 선택 열 (체크박스용) -->
+            <td>선택</td>
+            <!-- 제목 열 (검색어 표시) -->
+            <td>제목</td>
+        </tr>
+    </table>
+    <!-- 전체 선택 체크박스: 클릭 시 allselect() 함수 호출 -->
+    <input type="checkbox" id="allcbox" name="cbox" onclick="allselect(this)">
+    <!-- 전체 선택 체크박스의 라벨 -->
+    <label for="">전체선택</label>
+    <!-- 선택된 항목 삭제 버튼: 클릭 시 deleteall() 함수 호출 -->
+    <button id="btn2" onclick="deleteall()">삭제</button>
+</body>
+</html>
+<!-- JavaScript 코드 -->
+<script>
+    // 검색어 입력을 테이블에 추가하는 함수
+    function insert(){
+        // 테이블 요소 가져오기
+        let a = document.getElementById('ta1');
+        // 검색어 입력값 가져오기
+        let b = document.getElementById('serach').value;
+        // 테이블에 새로운 행 추가: 체크박스와 검색어 포함
+        // 주의: 체크박스 태그의 따옴표가 잘못됨 (\" 대신 " 사용 가능)
+        a.innerHTML += '<tr>' + 
+            '<td><input type=\"checkbox\" name=\"cbox\"></td>' +
+            '<td>' + b + '</td>' +
+            '</tr>';
+        // 개선 제안: 입력값이 비어 있는 경우 처리 추가 필요
+        // 개선 제안: innerHTML += 대신 DOM 조작 메서드 사용 권장
+    }
+
+    // 전체 선택 체크박스 상태에 따라 모든 체크박스를 토글하는 함수
+    function allselect(selectAll){
+        // 이름이 'cbox'인 모든 체크박스 가져오기
+        const checkboxes = document.getElementsByName('cbox');
+        
+        // 각 체크박스의 상태를 전체 선택 체크박스와 동일하게 설정
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked;
+        });
+        // 주의: 전체 선택 체크박스도 'cbox' 이름에 포함되므로 본인도 토글됨
+    }
+
+    // 선택된 항목을 삭제하는 함수 (현재 미구현)
+    function deleteall(){
+        // 기능 미구현
+        // 제안: 선택된 체크박스의 행을 테이블에서 제거하는 로직 추가
+        // 예: 체크된 체크박스의 부모 행을 찾아 제거
+    }
+</script>

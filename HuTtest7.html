@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 문서의 문자 인코딩을 UTF-8로 설정 -->
+    <meta charset="UTF-8">
+    <!-- 다양한 디바이스에서 반응형 디자인을 보장 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 웹페이지의 제목 설정 -->
+    <title>Document</title>
+</head>
+<!-- JavaScript 코드 -->
+<script>
+    // 순번 카운터
+    let i = 1;
+    // 행 번호 추적 변수
+    let j = 0;
+    // 행 개수 제한 카운터
+    let e = 0;
+
+    // 페이지 로드 시 이벤트 리스너 설정
+    window.onload = () => {
+        // 저장 버튼 클릭 이벤트: 새로운 행 추가
+        document.getElementById('savebox').addEventListener('click', () => {
+            // 테이블 및 입력 요소 가져오기
+            let select_table = document.getElementById('select_table');
+            let selectbox = document.getElementById('selectbox');
+            let wordbox = document.getElementById('wordbox');
+            let textbox = document.getElementById('textbox');
+            let page = document.getElementById('page1');
+            // 행 번호 증가
+            j += i;
+
+            // 설명 입력을 5자로 제한하는 함수
+            function limit5(textbox) {
+                if (textbox.value.length >= 5) {
+                    return textbox.value.substr(0, 5);
+                } else {
+                    return textbox.value;
+                }
+            }
+
+            // 최대 5행까지만 추가
+            if (e <= 4) {
+                // 새로운 행과 셀 생성
+                newtr = select_table.insertRow();
+                newcell0 = newtr.insertCell(0);
+                newcell1 = newtr.insertCell(1);
+                newcell2 = newtr.insertCell(2);
+                newcell3 = newtr.insertCell(3);
+                newcell4 = newtr.insertCell(4);
+                // 체크박스 추가
+                newcell0.innerHTML = "<input type='checkbox' class='listgroup'>";
+                // 순번 표시
+                newcell1.innerHTML = "<span class='sun'>" + j + "</span>";
+                // 구분 선택값 표시
+                newcell2.innerHTML = "<span class='gu'>" + document.getElementById('selectbox').value + "</span>";
+                // 단어 입력값 표시
+                newcell3.innerHTML = "<span class='dan'>" + wordbox.value + "</span>";
+                // 설명 입력값 (5자 제한) 표시
+                newcell4.innerHTML = "<span class='ssu'>" + limit5(textbox) + "</span>";
+                // 행 개수 증가
+                e++;
+            }
+            // 주의: 입력값 유효성 검사 미구현
+            // 개선 제안: 입력값이 비어 있는 경우 경고 추가
+        });
+
+        // 삭제 버튼 클릭 이벤트: 선택된 행 삭제
+        document.getElementById('deletebtn').addEventListener('click', () => {
+            // 체크박스 요소 가져오기
+            let a = document.getElementsByClassName('listgroup');
+            let t = document.getElementById('select_table');
+            // 체크된 행 역순으로 삭제
+            for (let z = a.length - 1; z >= 0; z--) {
+                if (a[z].checked) {
+                    t.deleteRow(z + 1);
+                }
+            }
+            // 카운터 초기화
+            j = 0;
+            e = 0;
+            // 주의: 순번(j) 초기화로 인해 새 행 추가 시 순번이 1부터 시작
+        });
+
+        // 전체 선택 체크박스 클릭 이벤트: 모든 체크박스 토글
+        document.getElementById('allselect').addEventListener('click', () => {
+            // 전체 선택 체크박스 상태 가져오기
+            let x = document.getElementById('allselect').checked;
+            // 모든 listgroup 체크박스 가져오기
+            let xx = document.getElementsByClassName('listgroup');
+            // 각 체크박스 상태를 전체 선택과 동일하게 설정
+            for (let v = 0; v < xx.length; v++) {
+                xx[v].checked = x;
+            }
+        });
+    };
+</script>
+<body>
+    <!-- 헤더 영역 -->
+    <div id="header">
+        <!-- 페이지 제목 -->
+        <span><h1>휴먼전공 용어 공부</h1></span>
+    </div>    
+    <!-- 입력 폼 영역 -->
+    <div id="inputbox" style="display: inline-block;">
+        <!-- 단어 입력 필드 -->
+        <div id="wordboxt">
+            <h2 style="display: inline-block;">단어</h2>
+            <input type="text" id="wordbox" style="display: inline-block;">
+        </div>
+        <!-- 구분 선택 드롭다운 -->
+        <div id="selectboxt">
+            <h2 style="display: inline-block;">구분</h2>
+            <select id="selectbox">
+                <option id="db">db</option>
+                <option id="java">java</option>
+                <option id="html">html</option>
+                <option id="css">css</option>
+                <option id="js">js</option>
+            </select>
+        </div>
+        <!-- 설명 입력 필드 -->
+        <div id="textboxt">
+            <h2 style="display: inline-block;">설명</h2>
+            <input type="text" id="textbox">
+        </div>
+        <!-- 저장 버튼: 클릭 시 새로운 행 추가 -->
+        <button value="저장" id="savebox">저장</button> 
+    </div>
+    <!-- 테이블 및 버튼 영역 -->
+    <div id="inputtable" style="display: inline-block;">
+        <!-- 용어 목록 테이블 -->
+        <table id="select_table" style="display: inline-block;">
+            <tr>
+                <!-- 전체 선택 체크박스 -->
+                <td><input type="checkbox" id="allselect">전체선택</td>
+                <!-- 순번 열 -->
+                <td>순번</td>
+                <!-- 구분 열 -->
+                <td>구분</td>
+                <!-- 단어 열 -->
+                <td>단어</td>
+                <!-- 설명 열 -->
+                <td>설명</td>
+            </tr>
+        </table>
+        <!-- 삭제 버튼: 선택된 행 삭제 -->
+        <button id="deletebtn">삭제</button>
+        <!-- 페이지 네비게이션 버튼 (기능 미구현) -->
+        <div id="page">
+            <button id="page1">[1]</button>
+            <button id="page2">[2]</button>
+            <button id="page3">[3]</button>
+            <button id="page4">[4]</button>
+            <button id="page5">[5]</button>
+        </div>
+    </div>
+</body>
+<!-- CSS 스타일 정의 -->
+<style>
+    /* 헤더 스타일: 중앙 정렬, 청록색 배경 */
+    #header {
+        display: inline-block;
+        width: 1150px;
+        text-align: center;
+        border: none;
+        background-color: rgb(94, 238, 238);
+    }
+    /* 입력 폼 영역 스타일: 왼쪽 여백 */
+    #inputbox {
+        display: inline-block;
+        margin-left: 200px;
+    }
+    /* 테이블 영역 스타일: 절대 위치 */
+    #inputtable {
+        position: absolute;
+    }
+    /* 제목 스타일: 청록색 배경, 중앙 정렬 */
+    h2 {
+        background-color: rgb(94, 238, 238);
+        width: 50px;
+        height: 40px;
+        text-align: center;
+        padding: 10px;
+    }
+    /* 단어 입력 필드 스타일 */
+    #wordbox {
+        background-color: rgb(94, 238, 238);
+        width: 200px;
+        height: 40px;
+        padding: 10px;
+        border: none;
+    }
+    /* 구분 선택 드롭다운 스타일 */
+    #selectbox {
+        background-color: rgb(94, 238, 238);
+        width: 222px;
+        height: 60px;
+        padding: 10px;
+        border: none;
+    }
+    /* 설명 입력 필드 스타일 */
+    #textbox {
+        background-color: rgb(94, 238, 238);
+        width: 200px;
+        height: 40px;
+        padding: 10px;
+        border: none;
+    }
+    /* 저장 버튼 스타일 */
+    #savebox {
+        background-color: rgb(94, 238, 238);
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        padding: 10px;
+        border: none;
+        margin-left: 240px;
+    }
+    /* 테이블 스타일: 청록색 테두리, 셀 간격 없음 */
+    #select_table {
+        margin-top: 20px;
+        border: solid 1px rgb(94, 238, 238);
+        border-collapse: collapse;
+        margin-left: 10px;
+    }
+    /* 테이블 행 스타일 */
+    tr {
+        height: 50px;
+    }
+    /* 테이블 셀 스타일 */
+    td {
+        border: solid rgb(94, 238, 238);
+        width: 100px;
+        height: 50px;
+    }
+    /* 삭제 버튼 스타일 */
+    #deletebtn {
+        display: block;
+        background-color: rgb(94, 238, 238);
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        padding: 10px;
+        border: none;
+        margin-left: 480px;
+    }
+    /* 페이지 네비게이션 스타일 */
+    #page {
+        margin-left: 220px;
+    }
+</style>
+</html>

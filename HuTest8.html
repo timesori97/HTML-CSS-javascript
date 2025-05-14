@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 문서의 문자 인코딩을 UTF-8로 설정 -->
+    <meta charset="UTF-8">
+    <!-- 다양한 디바이스에서 반응형 디자인을 보장 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 웹페이지의 제목 설정 -->
+    <title>Document</title>
+</head>
+<!-- CSS 스타일 정의 -->
+<style>
+    /* 페이지 제목 스타일: 중앙 정렬, 청보라색 배경 */
+    h1 {
+        text-align: center;
+        width: 1115px;
+        padding: 10px;
+        background-color: rgb(166, 166, 247);
+    }
+    /* 여행지 섹션 스타일: 절대 위치, 왼쪽 여백 */
+    #travel {
+        display: inline-block;
+        position: absolute;
+        margin-left: 100px;
+        width: 300px;
+    }
+    /* 여행지 제목 스타일: 중앙 정렬, 진한 청보라색 배경 */
+    #travellocation {
+        text-align: center;
+        background-color: rgb(108, 108, 250);
+    }
+    /* 여행지 테이블 영역 스타일: 중앙 정렬, 청보라색 배경 */
+    #travelsection {
+        height: 150px;
+        text-align: center;
+        background-color: rgb(166, 166, 247);
+        padding: 40px;
+    }
+    /* 버튼 섹션 스타일: 절대 위치, 중앙 여백 */
+    #buttonsection {
+        display: inline-block;
+        margin-left: 520px;
+        margin-top: 150px;
+        position: absolute;
+    }
+    /* 오른쪽 이동 버튼 스타일 */
+    #button1 {
+        width: 50px;
+        height: 40px;
+        display: inline-block;
+    }
+    /* 왼쪽 이동 버튼 스타일 */
+    #button2 {
+        width: 50px;
+        height: 40px;
+        display: block;
+    }
+    /* 선택한 여행지 섹션 스타일: 절대 위치, 오른쪽 여백 */
+    #travelc {
+        display: inline-block;
+        margin-left: 700px;
+        position: absolute;
+        width: 300px;
+    }
+    /* 선택한 여행지 제목 스타일: 중앙 정렬, 진한 청보라색 배경 */
+    #travelchoice {
+        text-align: center;
+        background-color: rgb(108, 108, 250);
+    }
+    /* 선택한 여행지 테이블 영역 스타일: 청보라색 배경 */
+    #choicetravel {
+        height: 150px;
+        background-color: rgb(166, 166, 247);
+        padding: 40px;
+    }
+</style>
+<body>
+    <!-- 페이지 제목 -->
+    <h1>휴먼 여행사</h1>
+    <!-- 여행지 목록 섹션 -->
+    <div id="travel">
+        <!-- 여행지 제목 -->
+        <h2 id="travellocation">여행지</h2>
+        <!-- 여행지 테이블 영역 -->
+        <div id="travelsection">
+            <!-- 여행지 목록 테이블 -->
+            <table id="table1">
+            </table>
+        </div>
+    </div>
+    <!-- 이동 버튼 섹션 -->
+    <div id="buttonsection">
+        <!-- 오른쪽 이동 버튼: 선택된 여행지를 오른쪽 테이블로 이동 -->
+        <button id="button1">>></button>
+        <!-- 왼쪽 이동 버튼: 선택된 여행지를 왼쪽 테이블로 이동 -->
+        <button id="button2"><<</button>
+    </div>
+    <!-- 선택한 여행지 섹션 -->
+    <div id="travelc">
+        <!-- 선택한 여행지 제목 -->
+        <h2 id="travelchoice">선택한 여행지</h2>
+        <!-- 선택한 여행지 테이블 영역 -->
+        <div id="choicetravel">
+            <!-- 선택한 여행지 목록 테이블 -->
+            <table id="table2">
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<!-- JavaScript 코드 -->
+<script>
+    // 페이지 로드 시 실행
+    window.onload = () => {
+        // 여행지 테이블(table1)에 초기 행 추가
+        newtr1 = table1.insertRow(0);
+        newtr2 = table1.insertRow(1);
+        newtr3 = table1.insertRow(2);
+        newtr4 = table1.insertRow(3);
+        // 각 행에 체크박스와 여행지 이름 추가
+        // 주의: 체크박스 태그의 따옴표가 잘못됨 (\" 대신 " 사용 가능)
+        newtr1.innerHTML = '<input type=\"checkbox"\ id=\"suwon"\ class=\"listgroup"\><span id=\"suwonn"\>수원</span><br>';
+        newtr2.innerHTML = '<input type=\"checkbox"\ id=\"dong"\ class=\"listgroup"\><span id=\"dongn"\>동해시</span><br>';
+        newtr3.innerHTML = '<input type=\"checkbox"\ id=\"bu"\ class=\"listgroup"\><span id=\"bun"\>부산</span><br>';
+        newtr4.innerHTML = '<input type=\"checkbox"\ id=\"pa"\ class=\"listgroup"\><span id=\"pan"\>평창</span><br>';
+
+        // 선택한 여행지 테이블(table2)에 빈 행 추가
+        newtr5 = table2.insertRow(0);
+        newtr6 = table2.insertRow(1);
+        newtr7 = table2.insertRow(2);
+        newtr8 = table2.insertRow(3);
+
+        // 오른쪽 이동 버튼(>>): 선택된 여행지를 table1에서 table2로 이동
+        document.getElementById('button1').addEventListener('click', () => {
+            // 각 체크박스 요소 가져오기
+            let suwon = document.getElementById('suwon');
+            let dong = document.getElementById('dong');
+            let bu = document.getElementById('bu');
+            let pa = document.getElementById('pa');
+            // 오류: 'won'과 'yeong'은 정의되지 않은 ID
+            let won = document.getElementById('won');
+            let yeong = document.getElementById('yeong');
+
+            // 체크된 여행지를 table2의 해당 행에 추가
+            if (suwon.checked == true) {
+                newtr5.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"suwon"\ class=\"listgroup"\><span id=\"suwonn"\>수원</span><br>';
+            }
+            if (dong.checked == true) {
+                newtr6.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"dong"\ class=\"listgroup"\><span id=\"dongn"\>동해시</span><br>';
+            }
+            if (bu.checked == true) {
+                newtr7.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"bu"\ class=\"listgroup"\><span id=\"bun"\>부산</span><br>';
+            }
+            if (pa.checked == true) {
+                newtr8.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"pa"\ class=\"listgroup"\><span id=\"pan"\>평창</span><br>';
+            }
+
+            // 체크된 행을 table1에서 삭제
+            let a = document.getElementsByClassName('listgroup');
+            let t = document.getElementById('table1');
+            for (let z = 0; z < a.length; z++) {
+                if (a[z].checked) {
+                    t.deleteRow(z);
+                }
+            }
+            // 오류: 삭제 후 table1 행 수가 줄어들어 인덱스 불일치 가능성
+        });
+
+        // 왼쪽 이동 버튼(<<): 선택된 여행지를 table2에서 table1로 이동
+        document.getElementById('button2').addEventListener('click', () => {
+            // 각 체크박스 요소 가져오기
+            let suwony = document.getElementById('suwon');
+            let dongy = document.getElementById('dong');
+            let buy = document.getElementById('bu');
+            let pay = document.getElementById('pa');
+
+            // table1과 table2에 새 행 생성
+            newtr1 = table1.insertRow(0);
+            newtr2 = table1.insertRow(1);
+            newtr3 = table1.insertRow(2);
+            newtr4 = table1.insertRow(3);
+            newtr5 = table2.insertRow(0);
+            newtr6 = table2.insertRow(1);
+            newtr7 = table2.insertRow(2);
+            newtr8 = table2.insertRow(3);
+
+            // 체크된 여행지를 table1의 해당 행에 추가
+            if (suwony.checked == true) {
+                newtr1.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"suwon"\ class=\"listgroup"\><span id=\"suwonn"\>수원</span><br>';
+            }
+            if (dongy.checked == true) {
+                newtr2.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"dong"\ class=\"listgroup"\><span id=\"dongn"\>동해시</span><br>';
+            }
+            if (buy.checked == true) {
+                newtr3.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"bu"\ class=\"listgroup"\><span id=\"bun"\>부산</span><br>';
+            }
+            if (pay.checked == true) {
+                newtr4.innerHTML += 
+                    '<input type=\"checkbox"\ id=\"pa"\ class=\"listgroup"\><span id=\"pan"\>평창</span><br>';
+            }
+
+            // 체크된 행을 table2에서 삭제
+            let q = document.getElementsByClassName('listgroup');
+            let w = document.getElementById('table2');
+            for (let c = 0; c < q.length; c++) {
+                if (q[c].checked) {
+                    w.deleteRow(c);
+                }
+            }
+            // 오류: 동일한 ID 사용으로 체크박스 충돌 가능성
+        });
+    }
+</script>

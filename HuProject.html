@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+body{
+    width: 1100px;
+    margin: 0;
+    padding: 0;
+}
+#header{
+    position: fixed;
+    background-color: ivory;
+    width: 1800px;
+    margin: 0px;
+    border: solid rgb(202, 200, 200);
+    border-top: none;
+    z-index: 100;
+}
+#totalhtml{
+    padding-top: 270px;
+    padding-left: 180px;
+    
+}
+#text1 p{
+    font-size: 10px;
+}
+p{
+    font-size: small;
+}
+#titleh1{
+    display: inline-block;
+    margin-left: 200px;
+}
+#titletext{
+    display: inline-block;
+    margin-left: 40px;
+    width: 400px;
+
+}
+#titlep{
+    display: inline-block;
+    margin-left: 100px;
+}
+#semiheader2{
+    margin-left: 300px;
+
+}
+#semiheader3{
+    margin-left: 270px;
+    margin-top: 30px;
+}
+td{
+    display: block;
+    font-size: small;
+}
+tr{
+    display: inline-block;
+    
+}
+.t{
+    width: 769px;
+    border-radius: 5%;
+    height: 120px;
+    
+}
+.i{
+    width: 150px;
+    height: 150px;
+    border-radius: 5%;
+}
+#footerimg{
+    width: 760px;
+}
+
+button{
+    border: none;
+}
+#allbtn{
+    display: inline-block;
+}
+span{
+    font-size: small;
+}
+#footertext p{
+    font-size: 10px;
+}
+#btnheader2{
+    position:absolute;
+    margin-left: 730px;
+}
+.btnheader{
+    position: absolute;
+    font-size: 50px;
+    background-color: white;
+    margin-top: 60px;
+    background: rgb(0,0,0,0.5);
+    margin-right: 10px;
+    z-index: 10;
+    
+}
+#menuadd{
+    display: inline-block;
+}
+</style>
+<body>
+<div id="header">
+    <img src="./imageproject/headerimg.png" alt="">
+    <div id="semiheader1">
+        <h1 id="titleh1">Jonnara</h1><input type="text" id="titletext">
+        <p id="titlep">채팅하기 판매하기 마이</p>
+    </div>
+    <div id="semiheader2">
+        <button id="menubutton1"><</button>
+        <button id="menubutton2">></button>
+        <div id="menuadd">
+        <span id="span1" >1.두산 기아</span>
+        <span>2.건담</span>
+        <span>3.이여력</span>
+        <span>4.삼성라이온즈</span>
+        <span>5.에버랜드</span>
+        </div>
+        
+    </div>
+    <div id="semiheader3">
+        <select name="" id="category">
+            <option value="수입명품">수입명품</option>
+            <option value="패션의류">패션의류</option>
+            <option value="패션잡화">패션잡화</option>
+            <option value="뷰티">뷰티</option>
+            <option value="출산/유아동">출산/유아동</option>
+            <option value="모바일/태블릿">모바일/태블릿</option>
+            <option value="가전제품">가전제품</option>
+            <option value="노트북/ PC">노트북/PC</option>
+            <option value="카메라/캠코더">카메라/캠코더</option>
+            <option value="가구/인테리어">가구/인테리어</option>
+            <option value="리빙/생활">리빙/생활</option>
+        </select>
+        <div id="allbtn">
+            <button>이벤트</button>
+            <button>구매수수료 0원!</button>
+            <button>사기조회</button>
+            <button>시세조회</button>
+            <button>읽을거리</button>
+            <button>찜한 상품</button>
+        </div>
+    </div>
+</div>
+<div id="totalhtml">
+    <div id="slider_wrap">
+    <div id="headerimg">
+        <tr>
+            <button id="btnheader1" class="btnheader"><</button>
+            <button id="btnheader2" class="btnheader">></button>
+            <img src="./imageproject/t2.png" class="t" id="t1">
+            
+        </tr>
+    </div>
+</div>
+    <div>
+        <table>
+            <tr><h2>지금 주목해야 할 추천 상품</h2></tr>
+            <tr>
+                <td><img src="./imageproject/1_1.png" alt="" class="i"></td>
+                <td><p>친티앤파커<br>램스울 니트 XS</p></td>
+                <td>80,000원</td>
+                <td>4시간 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/1_2.png" alt="" class="i"></td>
+                <td><p>*쿨거래시,반택포* 펀프롬펀<br> 에코 퍼</p></td>
+                <td>69,000원</td>
+                <td>6일 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/1_3.png" alt="" class="i"></td>
+                <td><p>미뉴에트 가내스라<br>프롬비기닝 위드</p></td>
+                <td>7,000원</td>
+                <td>4일 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/1_4.png" alt="" class="i"></td>
+                <td><p>라푸마 남성<br>반팔티 105</p></td>
+                <td>18,000원</td>
+                <td>4일 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/1_5.png" alt="" class="i"></td>
+                <td><p>나비크롭조끼<br>/미착용</p></td>
+                <td>10,000원</td>
+                <td>3일 전</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+         <table>
+            <tr><h2>꼭! 사야하는 브랜드</h2></tr>
+            <tr>
+                <td><img src="./imageproject/2_1.png" alt="" class="i"></td>
+                <td><p>이디야 옥스포드<br>레고 변우석</p></td>
+                <td>80,000원</td>
+                <td>4시간 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/2_2.png" alt="" class="i"></td>
+                <td><p>애플 맥북 프로 <br>14형 M! 판매합니다</p></td>
+                <td>1,900,000원</td>
+                <td>2일 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/2_3.png" alt="" class="i"></td>
+                <td><p>르노 삼성 마스터<br>베바스토 순정 무신사</p></td>
+                <td>450,000원</td>
+                <td>1일 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/2_4.png" alt="" class="i"></td>
+                <td><p>레고(호환)마블 피규어<br>워머신</p></td>
+                <td>3,6000원</td>
+                <td>10일 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/2_5.png" alt="" class="i"></td>
+                <td><p>레고정품 71821닌자고<br>콜의 타이탄</p></td>
+                <td>19,000원</td>
+                <td>4일 전</td>
+            </tr>
+         </table>
+    </div>
+    <div>
+        <table>
+            <tr><h2>세븐일레븐 편의점 픽업</h2></tr>
+            <tr>
+                <td><img src="./imageproject/3_1.png" alt="" class="i"></td>
+                <td><p>보드 게임 크라임씬<br>머더미스터리</p></td>
+                <td>40,000원</td>
+                <td>1분 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/3_2.png" alt="" class="i"></td>
+                <td><p>[급처,정품]*캘러웨이*<br>여성용 골프채</p></td>
+                <td>260,000원</td>
+                <td>5분 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/3_3.png" alt="" class="i"></td>
+                <td><p>정품 꼼뜨와 데 꼬또니에<br>프랑스 여</p></td>
+                <td>40,000원</td>
+                <td>8일 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/3_4.png" alt="" class="i"></td>
+                <td><p>오토매틱 시계</p></td>
+                <td>120,6000원</td>
+                <td>4분 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/3_5.png" alt="" class="i"></td>
+                <td><p>케이스티파이 아이폰<br>16프로 폰 케이스</p></td>
+                <td>72,000원</td>
+                <td>5분 전</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr><h2>실시간 인기상품</h2></tr>
+            <tr>
+                <td><img src="./imageproject/4_1.png" alt="" class="i"></td>
+                <td><p>국내 정발 라이젠7<br>7800X3D 팝니다</p></td>
+                <td>425,000원</td>
+                <td>38초 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/4_2.png" alt="" class="i"></td>
+                <td><p>테슬라 모델3 정품<br>가로바,툴레 자전</p></td>
+                <td>200,000원</td>
+                <td>1분 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/4_3.png" alt="" class="i"></td>
+                <td><p>LED 헤드라이트 등산<br>낚시 자전거</p></td>
+                <td>8,000원</td>
+                <td>2분 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/4_4.png" alt="" class="i"></td>
+                <td><p>실내입식자전거</p></td>
+                <td>500,000원</td>
+                <td>9분 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/4_5.png" alt="" class="i"></td>
+                <td><p>자이언트 레인 sx<br>올마운틴 폴샥 자전거</p></td>
+                <td>1,980,000원</td>
+                <td>9분 전</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr><h2>방금 등록된 상품</h2></tr>
+            <tr>
+                <td><img src="./imageproject/5_1.png" alt="" class="i"></td>
+                <td><p>4/26(토일)삼성<br>라이온즈 nc다이</p></td>
+                <td>25,000원</td>
+                <td>3초 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/5_2.png" alt="" class="i"></td>
+                <td><p>버버리 자켓<br>봄자켓</p></td>
+                <td>130,000원</td>
+                <td>12초 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/5_3.png" alt="" class="i"></td>
+                <td><p>스와브로스키<br>아메리카노 쿠폰</p></td>
+                <td>4,000원</td>
+                <td>15초 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/5_4.png" alt="" class="i"></td>
+                <td><p>아이엠스타<br>카드 판매</p></td>
+                <td>3,500원</td>
+                <td>19초 전</td>
+            </tr>
+            <tr>
+                <td><img src="./imageproject/5_5.png" alt="" class="i"></td>
+                <td><p>아이폰12미니<br>S급(풀박스+케이스)</p></td>
+                <td>250,000원</td>
+                <td>24초 전</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <img src="./imageproject/title.png" alt="" id="footerimg">
+    </div>
+    <div id="text1">
+            <h4>(주)준나라 사업자 정보<br>
+            <p>(주)준나라  대표자 : 박성준<br>
+            사업자 등록번호 : 215-87-87482 <br>
+            통신판매신고번호 : 제2024-서울강남-06966호<br>
+            주소 : 서울 강남구 테헤란로 415 L7 호텔 강남타워 4층<br>
+            대표번호 : 1533-7861<br>
+            메일 : joongna@joonggonara.co.kr<br>
+            호스팅제공자 : 아마존웹서비스<br>
+            Contact 중고나라 셀러 회원 신청 중고나라 광고 문의<br></p>
+        
+    </div>
+    <div id="footertext">
+        <p>이용약관 개인정보처리방침 분쟁처리절차 청소년보호정책 사업자정보확인<br>
+            게시글 수집 및 이용 안내 중고나라 고객센터</p>
+        <select name="" id="">
+            <table>
+                <tr>
+                    <td><option value="">전체</option></td>
+                    <td><option value="">수입명품</option></td>
+                    <td><option value="">패션의류</option></td>
+                    <td><option value="">패션잡화</option></td>
+                    <td><option value="">뷰티</option></td>
+                    <td><option value="">출산/유아동</option></td>
+                </tr>
+                <tr>
+                    <td><option value="">모바일/태블릿</option></td>
+                    <td><option value="">가전제품</option></td>
+                    <td><option value="">노트북/PC</option></td>
+                    <td><option value="">카메라/캠코더</option></td>
+                    <td><option value="">가구/인테리어</option></td>
+                    <td><option value="">리빙/생활</option></td>
+                </tr>
+                <tr>
+                    <td><option value="">게임</option></td>
+                    <td><option value="">반려동물/취미</option></td>
+                    <td><option value="">도서/음반/문구</option></td>
+                    <td><option value="">티켓/쿠폰</option></td>
+                    <td><option value="">스포트</option></td>
+                    <td><option value="">레저/여행</option></td>
+                </tr>
+                <tr>
+                    <td><option value="">오토바이</option></td>
+                    <td><option value="">공구/산업용품</option></td>
+                    <td><option value="">무료나눔</option></td>
+                    <td><option value="">중고차</option></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </select>
+        <p>“중고나라” 상점의 판매상품을 제외한 모든 상품들에 대하여, (주)중고나라는 통신판매중개자로서 거래 당<br>
+            사자가 아니며 판매 회원과 구매 회원 간의 상품거래 정보 및 거래에 관여하지 않고, 어떠한 의무와 책임도<br>
+            부담하지 않습니다.</p>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    window.onload = () =>{
+        document.getElementById('btnheader1').addEventListener('click',()=>{
+           document.getElementById('t1').src = "./imageproject/t1.png"
+        })
+        document.getElementById('btnheader2').addEventListener('click',()=>{
+            document.getElementById('t1').src = "./imageproject/t3.png"
+
+        })
+        let i = 1;                   
+        let sliderInterval = 3000;          // 이미지 변경 간격 시간
+        setInterval(() => {
+            if(i > 3){
+                i = 1
+            }
+            document.getElementById('t1').src = "./imageproject/t"+i+".png"
+            i++
+            console.log(i);
+        }, sliderInterval);
+        document.getElementById('menubutton1').addEventListener('click',()=>{
+            if(document.getElementById('span1').innerText.includes('1.두산 기아')){
+                document.getElementById('menuadd').innerHTML = 
+            '<span id=\"span1"\>11.4080</span><span>12.3ds</span><span>13.그래픽카드</span><span>14.베베드피노</span><span>15.골드바</span>'
+            }else if(document.getElementById('span1').innerText.includes('11.4080')){
+                document.getElementById('menuadd').innerHTML = 
+            '<span id=\"span1"\>6.아이폰</span><span>7.3080</span><span>8.던스</span><span>9.콜드플렝</span><span>10.힐티</span>'
+            }else if(document.getElementById('span1').innerText.includes('6.아이폰')){
+                document.getElementById('menuadd').innerHTML = 
+                '<span id=\"span1"\>1.두산 기아</span><span>2.건담</span><span>3.이여력</span><span>4.삼성라이온즈</span><span>5.에버랜드</span>'
+            }
+        })
+
+        document.getElementById('menubutton2').addEventListener('click',()=>{
+           
+            if(document.getElementById('span1').innerText.includes('1.두산 기아')){
+                document.getElementById('menuadd').innerHTML = 
+                '<span id=\"span1"\>6.아이폰</span><span>7.3080</span><span>8.던스</span><span>9.콜드플렝</span><span>10.힐티</span>'
+            }else if(document.getElementById('span1').innerText.includes('6.아이폰')){
+                document.getElementById('menuadd').innerHTML = 
+            '<span id=\"span1"\>11.4080</span><span>12.3ds</span><span>13.그래픽카드</span><span>14.베베드피노</span><span>15.골드바</span>'
+            }else if(document.getElementById('span1').innerText.includes('11.4080')){
+                document.getElementById('menuadd').innerHTML = 
+                '<span id=\"span1"\>1.두산 기아</span><span>2.건담</span><span>3.이여력</span><span>4.삼성라이온즈</span><span>5.에버랜드</span>'
+            }
+        })
+    }
+
+</script>
